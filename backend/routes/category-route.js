@@ -1,14 +1,14 @@
 const { Router } = require("express");
 const {
-  getAllUser,
-  createUser,
-  updateUser,
-  deleteUser,
-} = require("../controllers/user-controller");
+  getAllCategory,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+} = require("../controllers/category-controller");
 
 const router = Router();
 
-router.route("/").get(getAllUser).post(createUser);
-router.route("/:id").put(updateUser).delete(deleteUser);
+router.route("/").get(getAllCategory).post(createCategory);
+router.route("/:id").put(updateCategory).delete(deleteCategory);
 
 module.exports = router;
