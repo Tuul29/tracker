@@ -3,15 +3,17 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const signUp = async (req, res) => {
-  try{
+  try {
     const { email, name, password } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 10);
-  const data = await sql`
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    const data = await sql`
   INSERT INTO users(email, name, password, profile_img)
   VALUES(${email}, ${name}, ${hashedPassword}, 'url');
   `;
-  console.log("DATA", data);
-  res.status(201).json({ message: "New user registered successfully" });
+    console.log("DATA", data);
+    res.status(201).json({ message: "New user registered successfully" });
+  } catch (error) {
+    res.status(400).json({ message: "Client error garlaa" });
   }
 };
 

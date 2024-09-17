@@ -49,16 +49,13 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ email, name, password }),
-        }
-      );
+      const response = await fetch(`${apiUrl}/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ email, name, password }),
+      });
 
       if (response.status === 201) {
         toast.success("User successfully signed up", { autoClose: 1000 });
