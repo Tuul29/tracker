@@ -3,7 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const signUp = async (req, res) => {
-  const { email, name, password } = req.body;
+  try{
+    const { email, name, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 10);
   const data = await sql`
   INSERT INTO users(email, name, password, profile_img)
@@ -11,6 +12,7 @@ const signUp = async (req, res) => {
   `;
   console.log("DATA", data);
   res.status(201).json({ message: "New user registered successfully" });
+  }
 };
 
 const signIn = async (req, res) => {
